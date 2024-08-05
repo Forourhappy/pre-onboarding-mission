@@ -9,9 +9,22 @@ export type SearchData = {
 };
 
 const getSearchData = async (filter: string = "") => {
-  return (dummy as SearchData[]).filter((data) =>
-    data.key.toLowerCase().includes(filter.toLowerCase()),
-  );
+  const data = dummy as SearchData[];
+  if (!filter) {
+    return data;
+  }
+  return data.map((search) => {
+    if (search.description.toLowerCase().includes(filter.toLowerCase())) {
+      return {
+        ...search,
+        description: search.description.replace(
+          new RegExp(filter, "i"),
+          (match) => `<b>${match}</b>`,
+        ),
+      };
+    }
+    return search;
+  });
 };
 
 export const useSearch = (input: string) => {

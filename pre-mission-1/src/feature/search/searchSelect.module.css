@@ -1,0 +1,14 @@
+.selectList {
+    width: 100%;
+    max-height: 200px;
+    overflow: auto;
+}
+
+.select, .focus {
+    color: white;
+    background-color: navy;
+}
+
+.focus {
+    opacity: 0.7;
+}
